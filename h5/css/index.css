@@ -1,0 +1,359 @@
+.model-round{
+	width: 46px;
+	height: 46px;
+	border-radius: 10px;
+	text-align: center;
+}
+.mbg-red{
+	background-color: #f13946;
+}
+.mbg-blue{
+	background-color: #37acf4;
+}
+.mbg-orange{
+	background-color: #ff9000;
+}
+.mbg-green{
+	background-color: #1ec18e;
+}
+
+.data-ready{
+    height:203px;
+}
+.classify,
+.data-ready ul{
+	display:table;
+	table-layout: fixed;
+	width: 100%;
+	background-color: #fff;
+}
+.classify{
+	padding: 20px 0;
+	margin-bottom: 10px;
+	text-align: center;
+	color: #666;
+	font-size: 1.2rem;
+	border-bottom: 1px solid #dbdad9;
+}
+.classify li{
+	vertical-align: top;
+}
+.classify p{
+	line-height: 24px;
+}
+.data-ready ul li span,
+.data-ready ul li i{
+	vertical-align: middle;
+}
+.data-ready,.news-ready{
+	margin-bottom: 10px;
+	background-color: #fff;
+	border-top: 1px solid #dbdad9;
+	border-bottom: 1px solid #dbdad9;
+}
+    .data-ready, .news-ready a
+    {
+        color:#1a1a1a; 
+    }
+        .data-ready, .news-ready a.more
+        {
+            color:#ff9000;
+          
+        }
+        .news-ready a.more
+        {
+            width:140px;
+            display:block;
+            margin:0 auto;
+        }
+.dr-tit{
+	padding: 10px;
+	box-sizing: border-box;
+	border-bottom: 1px solid #e6e6e6;
+	font-size: 1.6rem;
+	color: #292929;
+}
+.dr-tit li:last-child{
+	text-align: right;
+	font-size: 1.2rem;
+	color: #999;
+}
+.data-group{
+	font-size: 1.5rem;
+	color: #292929;
+}
+.data-group i,.dr-tit li:last-child span{
+	margin-right: 8px;
+}
+.data-group ul,.news-ready li{
+	border-bottom: 1px solid #e6e6e6;
+}
+.data-group ul li{
+	padding: 15px 10px;
+	box-sizing: border-box;
+    
+}
+.news-ready li
+{
+    height:40px;
+}
+.data-group ul:last-child,.news-ready li:last-child{
+	border-bottom: none;
+}
+.data-group ul li:last-child{position: relative;}
+.data-group ul li:last-child:before{
+	position: absolute;
+	display: block;
+	content: "";
+	top: -10px;
+	left: -8px;
+	width: 17px;
+	height: 17px;
+	border-radius: 100%;
+	background-color: #fff;
+}
+.data-group ul:first-child li:last-child:before{
+	top: 0px;
+	height: 10px;
+	border-radius: 0;
+}
+.data-group ul:last-child li:last-child:after{
+	  position: absolute;
+	  display: block;
+	  content: "";
+	  bottom: 0px;
+	  left: -10px;
+	  height: 10px;
+	  width: 20px;
+	  background-color: #fff;
+}
+.data-group ul li:first-child{
+	border-right: 1px solid #E6E6E6;
+}
+.news-ready{
+	
+	color: #292929;
+}
+.news-ready li{
+	position: relative;
+	padding: 10px;
+	padding-left: 79px;
+    font-size:1.5rem;
+}
+.news-ready 
+.news-ready li:first-child{
+	padding:10px;
+}
+.news-ready li:last-child{
+	padding: 13px 10px;
+	font-size: 1.3rem;
+	color: #ff9000;
+	cursor: pointer;
+}
+.news-ready li:last-child i{
+	margin-top: 3px;
+}
+
+.news-ready1 li:last-child{
+	padding: 0 10px;
+	font-size: 1.3rem;
+	color: #ff9000;
+	cursor: pointer;
+    line-height:40px;
+}
+.news-ready1 li:last-child i{
+	margin-top: 15px;
+}
+
+
+.news-ready li span{
+	display: block;
+	position: absolute;
+	width: 60px;
+	height: 40px;
+	left: 10px;
+	top: 10px;
+}
+.news-ready li span img{
+	width: 100%;
+    width:60px;
+    height:41px;
+}
+.news-ready li p{
+	width: 100%;
+	line-height: 20px;
+    height:20px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;    
+    font-size:1.5rem;
+}
+.news-ready li .con{
+	font-size: 1.2rem;
+	color: #999;
+}
+    .news-ready  .nr-tit
+    {
+          height:20px;
+    line-height:20px;
+    text-align:left;
+    padding-left:10px;
+    }
+.nr-tit{
+	font-size: 1.6rem;
+  
+}
+.innerBox{
+    height:158px;
+}
+.tab-cell-ani {
+    -webkit-animation: slideInDown  .5s ease-in 0s forwards;
+    -moz-animation: slideInDown  .5s ease-in 0s forwards;
+    -o-animation: slideInDown  .5s ease-in 0s forwards;
+    animation: slideInDown  .5s ease-in 0s forwards;
+}
+
+.chan-ani {
+   animation:rubberBand .5s linear  .3s normal;
+   -webkit-animation:rubberBand .5s linear  .3s normal;
+}
+.jia-ani {
+    -moz-animation: fadeInRight .7s;
+    -o-animation: fadeInRight .7s;   
+    -webkit-animation: fadeInRight .7s;
+     animation: fadeInRight .7s;
+}
+.qiye-ani {
+    animation:flipInX .5s linear  .3s normal;
+     -webkit-animation:flipInX .5s linear  .3s normal;
+}
+
+@-webkit-keyframes pulseT {
+ 
+ 0% {
+    -webkit-transform: scale3d(0.05, 0.05,0.05)  rotateY(0deg);
+    transform: scale3d(.05, .05, .05)  rotateY(0deg);
+  } 
+
+  70% {
+    -webkit-transform: scale3d(1.2, 1.2, 1.2) rotateY(0deg);
+    transform: scale3d(1.5, 1.5, 1.5) rotateY(0deg);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1) rotateY(0deg);
+    transform: scale3d(1, 1, 1) rotateY(0deg);
+  }
+}
+
+
+@keyframes pulseT {
+ 
+
+  0% {
+    -webkit-transform: scale3d(0.05, 0.05,0.05)  rotateY(0deg);
+    transform: scale3d(.05, .05, .05)  rotateY(0deg);
+  } 
+
+  70% {
+    -webkit-transform: scale3d(1.2, 1.2, 1.2) rotateY(0deg);
+    transform: scale3d(1.2, 1.2, 1.2) rotateY(0deg);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1) rotateY(0deg);
+    transform: scale3d(1, 1, 1) rotateY(0deg);
+  }
+}
+
+
+
+
+.new0{
+-webkit-animation:Mrotate1 0.3s ease-in-out 0.1s forwards; 
+animation:Mrotate1 0.3s ease-in-out 0.1s forwards;
+}
+.new1{
+-webkit-animation:Mrotate2 0.3s ease-in-out 0.3s forwards; 
+animation:Mrotate2 0.2s ease-in-out 0.3s forwards;
+}
+.new2{
+-webkit-animation:Mrotate3 0.3s ease-in-out 0.5s forwards; 
+animation:Mrotate3 0.2s ease-in-out 0.5s forwards;
+}
+.new3{
+-webkit-animation:Mrotate4 0.3s ease-in-out 0.7s forwards; 
+animation:Mrotate4 0.3s ease-in-out 0.7s forwards;
+}
+.new4{
+-webkit-animation:Mrotate4 0.3s ease-in-out 0.9s forwards; 
+animation:Mrotate4 0.3s ease-in-out 0.9s forwards;
+}
+@-webkit-keyframes Mrotate1{
+from{
+-webkit-transform:rotateX(180deg);
+}
+to{
+-webkit-transform:rotateX(0);
+}
+}
+@keyframes Mrotate1{
+from{
+transform:rotateX(180deg);
+}
+to{
+transform:rotateX(0);
+}
+}
+@-webkit-keyframes Mrotate2{
+from{
+-webkit-transform:rotateX(150deg);
+}
+to{
+-webkit-transform:rotateX(0);
+}
+}
+@keyframes Mrotate2{
+from{
+transform:rotateX(150deg);
+}
+to{
+transform:rotateX(0);
+}
+}
+@-webkit-keyframes Mrotate3{
+from{
+-webkit-transform:rotateX(120deg);
+}
+to{
+-webkit-transform:rotateX(0);
+}
+}
+@keyframes Mrotate3{
+from{
+transform:rotateX(120deg);
+}
+to{
+transform:rotateX(0);
+}
+}
+@-webkit-keyframes Mrotate4{
+from{
+-webkit-transform:rotateX(90deg);
+}
+to{
+-webkit-transform:rotateX(0);
+}
+}
+@keyframes Mrotate4{
+from{
+transform:rotateX(90deg);
+}
+to{
+transform:rotateX(0);
+}
+}
+#btn{height:100%}
+.huan{
+      width: 65px;
+  float: right;
+  margin-right: 10px;
+}

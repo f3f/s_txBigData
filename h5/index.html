@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+   
+    <title>腾讯大数据-首页</title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link href="css/easydialog.css" rel="stylesheet" />
+    <script src="js/jquery-1.7.1.min.js"></script>
+    <script src="js/serviceaddress.js"></script>
+    <script src="js/easydialog.min.js"></script>
+    <script src="js/property/tiaozhuan.js"></script>
+    <script src="../../DataFile/HotWord.js"></script>
+    <script src="js/key.js"></script>
+  
+    <script type="text/javascript">
+        var localStorage = window.localStorage;
+       
+        jQuery(document).ready(function () {
+            if (localStorage.clean == 1) {
+                localStorage.clean();
+            }          
+            //alert(chanye);
+            //首页新闻列表mqz
+            $.ajax({
+                url: "/api/HotBigData/NewsList",
+                type: "GET",
+                data: { istop: "yes", topcount: 5 },
+                success: function (json) {
+                    if (json.result == 0) {
+                        var dataliststr = '';
+                       
+                        dataliststr += "<li class='nr-tit'>解读新闻</li>";
+                        if (json.data.length < 5) {
+                            for (i = 0; i < json.data.length; i++) {
+                                var news = "new" + i;
+                                dataliststr += "<li class='" + news + "'><a href='news/News_Details.html?ID=" + json.data[i].Id + "'>";
+                                dataliststr += " <span><img src='" + json.data[i].Picture + "'></span>";
+                                dataliststr += " <p>" + json.data[i].Title + "</p>";
+                                dataliststr += "<p class='con'>" + json.data[i].Keyword + "</p>";
+                                dataliststr += " </a></li>";
+
+                            } dataliststr += "<li></li>"
+                        } else {
+                            for (i = 0; i < 5; i++) {
+                                var news = "new" + i;
+                                dataliststr += "<li class='" + news + "'><a href='news/News_Details.html?ID=" + json.data[i].Id + "'>";
+                                dataliststr += " <span><img src='" + json.data[i].Picture + "'></span>";
+                                dataliststr += " <p>" + json.data[i].Title + "</p>";
+                                dataliststr += "<p class='con'>" + json.data[i].Keyword + "</p>";
+                                dataliststr += "</a></li>";
+                            } dataliststr += "<li><a href='news/News.html' class='more' >查看更多解读新闻<i class='icon-chang icon-gray-crw pull-right'></i></a></li>"
+                        }
+
+
+                        $("#newlist").append(dataliststr);
+                    }
+                }
+            });
+
+            localStorage.logo = 3;
+
+            localStorage['nm'] = 1;
+            jQuery('#btn').click(function () {
+                localStorage['nm'] = ++localStorage['nm'];
+                //for (var num = 1; num < 10; num++) {
+
+                if (localStorage['nm'] == 8) {
+                    localStorage['nm'] = 1;
+                }
+                LoadInfo(localStorage['nm']);
+
+                //}
+
+
+            });
+
+            LoadInfo(localStorage['nm']);
+
+
+
+            //页面跳转
+            jQuery('#login_btn').click(function () {
+                if (localStorage.UserID == null || localStorage.UserID == '') {
+                    location.href = 'login.html';
+                } else {
+                    location.href = 'my/my.html';
+                }
+
+            });
+
+            //页面跳转到细分行业
+            jQuery('#SubdivisionIndustry').click(function () {
+                location.href = 'trade-More/trade-More.html';
+            });
+
+            //页面跳转到细分行业
+            jQuery('#new').click(function () {
+                location.href = 'news/News.html';
+            });
+
+
+            //页面跳转到细分行业
+            jQuery('#IndustrialImg').click(function () {
+                location.href = 'Industry/property-list.html';
+            });
+
+
+            //页面跳转到细分行业
+            jQuery('#EnterpriseCredit').click(function () {
+                location.href = 'enterprise-credit/enterprise-credit.html';
+            });
+            jQuery('#tz').click(function () {
+                location.href = 'trade-More/trade-search.html';
+            });
+
+        })
+
+
+        function LoadInfo(PageIndex) {
+
+            
+            $.ajax({
+                url: serviceAddress + "api/HotBigData/HotWords",
+                type: "GET",
+                data: { "PageIndex": PageIndex, KeyId: localStorage.KeyId },
+                success: function (json) {
+                    if (json != null && json != '') {
+                        if (json.result = '0') {
+                            var ChanYe = json.ChanYe;
+                            var QiYeJia = json.QiYeJia;
+                            var QiYe = json.QiYe;
+                            var str = "";
+                            str += '<div class="innerBox"><ul><li class="tab-cell" onclick="tiao(\'' + ChanYe[0] + '\')"><ul><i class="icon-chang icon-data-red" ></i><span>' + ChanYe[0] + '</span></ul></li>';
+                            str += '<li class="tab-cell" onclick="tiao(\'' + ChanYe[1] + '\')"><i class="icon-chang icon-data-red " ></i><span>' + ChanYe[1] + '</span></li></ul>';
+
+                            str += '<ul><li class="tab-cell" onclick="sou(\'' + QiYeJia[0] + '\')"><i class="icon-chang icon-user-red"></i><span>' + QiYeJia[0] + '</span></li>';
+                            str += '<li class="tab-cell" onclick="sou(\'' + QiYeJia[1] + '\')"><i class="icon-chang icon-user-red"></i><span >' + QiYeJia[1] + '</span></li></ul>';
+
+                            str += '<ul><li class="tab-cell" onclick="qitiao(\'' + QiYe[0] + '\')"><i class="icon-chang icon-mode-red"></i><span class="">' + QiYe[0] + '</span></li>';
+                            str += '<li class="tab-cell" onclick="qitiao(\'' + QiYe[1] + '\')"><i class="icon-chang icon-mode-red"></i><span>' + QiYe[1] + '</span></li></ul></div>';                  
+                            $("#dataGroup").html(str);
+                            $(".innerBox").addClass("jia-ani");
+                           
+                        }
+                    }
+                }
+            });
+        }
+
+
+        function sou(zhi) {
+            localStorage['chuang'] = zhi;
+            localStorage['qiyename'] = '';
+            localStorage['chanpin'] = '';
+
+            localStorage['c1'] = '';
+            localStorage['c2'] = '';
+            localStorage['c3'] = '';
+            localStorage.f1 = '';
+            localStorage.f2 = '';
+            localStorage.f3 = '';
+            localStorage.f4 = '';
+            localStorage.EmployeesBegin = '';
+            localStorage.startGui = '';
+            localStorage['bs'] = 2;
+
+            location.href = 'search/search.html?index';
+
+        }
+        function qitiao(zhi) {
+            localStorage['qiyename'] = zhi;
+            localStorage['chuang'] = '';
+            localStorage['chanpin'] = '';
+            localStorage['c1'] = '';
+            localStorage['c2'] = '';
+            localStorage['c3'] = '';
+            localStorage.f1 = '';
+            localStorage.f2 = '';
+            localStorage.f3 = '';
+            localStorage.f4 = '';
+            localStorage.EmployeesBegin = '';
+            localStorage.startGui = '';
+
+            localStorage['bs'] = 2;
+            localStorage['backIndex'] = 0;
+            location.href = 'search/search.html?index';
+
+        }
+
+        </script>
+</head>
+<body>
+	<header class="totl-header totl-con">
+		<span style="float:left;">大数据平台</span>
+		<i id="login_btn" class="icon-group icon-user pull-right"></i>
+		<i class="icon-group icon-search pull-right" id="tz"></i>
+	</header>
+	<div class="container">
+		
+        <ul class="classify tab-cell-ani">
+        	<li class="tab-cell" id="SubdivisionIndustry">
+        		<span class="model-round mbg-red"><i class="icon-group icon-bg-01"></i></span>
+        		<p>细分行业</p>
+        	</li>
+        	<li class="tab-cell" id="new">
+        		<span class="model-round mbg-blue"><i class="icon-group icon-bg-02"></i></span>
+        		<p>解读新闻</p>
+        	</li>
+        	<li class="tab-cell" id="IndustrialImg">
+        		<span class="model-round mbg-orange"><i class="icon-group icon-bg-03"></i></span>
+        		<p>产业链图</p>
+        	</li>
+        	<li class="tab-cell" id="EnterpriseCredit">
+        		<span class="model-round mbg-green"><i class="icon-group icon-bg-04"></i></span>
+        		<p>企业查询</p>
+        	</li>
+        </ul>
+       
+        <section class="data-ready">
+        	<ul class="dr-tit">
+    			<li class="tab-cell">大数据解读</li>
+    			<li class="tab-cell"><div id="btn" class="huan"><span>换一批</span><i class="icon-chang icon-dote-new" ></i></div></li>
+    		</ul>
+    		<article class="data-group" id="dataGroup">
+               
+    		</article>
+        </section>
+     
+        <ul class="news-ready news-ready1" id="newlist">   
+        
+        	 
+        </ul> 
+        	
+        
+     
+        <ul class="news-ready news-ready1">
+        	<li class="nr-tit">产业链图</li>
+        	<li>
+                 <a href="Industry/property-chart1.html" target="_self">
+        		<span><img src="img/property/cyl_ico_01.png" /></span>
+        		<p>服装行业</p>
+        		<p class="con">上游涉及纤维生产、纱线生产、布料生产；中游包含：服装制造，设计、行业咨询、零配件，服装表演、展览、报刊出版；下游包含：服装批发、物料、零售</p>
+                </a>
+        	</li>
+        	<li>
+                <a href="Industry/property-chart5.html" target="_self">
+        		<span><img src="img/property/cyl_ico_02.png" /></span>
+        		<p>锂电池</p>
+        		<p class="con">上游涉及原料、锂电池材料；中游包含：锂电池制造；下游包含：锂电池应用</p>
+                </a>
+        	</li>
+        	<li>
+                <a href="Industry/property-chart7.html" target="_self">
+        		<span><img src="img/property/cyl_ico_03.png" /></span>
+        		<p>石油化工</p>
+        		<p class="con">上游涉及石油勘探、开采、储运；中游包含：石油冶炼、相关服务；下游包含：化工产业</p>
+                </a>
+        	</li>
+        	<li>
+                <a href="Industry/property-chart6.html" target="_self">
+        		<span><img src="img/property/cyl_ico_04.png" /></span>
+        		<p>数控机床</p>
+        		<p class="con">上游涉及设计研发；中游包含：零件产品、采购、机床生产；下游包含：销售、最终用户</p>
+                </a>
+        	</li>
+        	<li>
+                <a href="Industry/property-chart9.html" target="_self">
+        		<span><img src="img/property/cyl_ico_05.png" /></span>
+        		<p>太阳能光伏</p>
+        		<p class="con">上游涉及晶体硅原料、硅棒/硅锭/硅片；中游包含：光伏电池、光伏组件；下游包含：光伏系统应用产品</p>
+                </a>
+        	</li>
+        	
+        	<li><a href="Industry/property-list.html" class="more" >
+        		查看更多产业链图
+        		<i class="icon-chang icon-gray-crw pull-right"></i>
+        	</a></li>
+        </ul>
+	</div>
+</body>
+</html>
